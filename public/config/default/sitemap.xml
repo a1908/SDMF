@@ -1,0 +1,131 @@
+<?xml version='1.0'?>
+<!--
+Файл содержит описания меню и страниц зоны сайта
+
+Атрибут acl для меню - выводить или нет пункт меню для конктретной роли
+для страницы право на доступ к странице - значение all - видимо и доступно для всех авторизованных пользователей зоны
+   
+<link> - ссылка на страницу (относительно корня сайта + zone + language)
+<template> - шаблон, директория templates
+<title> - html title
+<description> - html description
+<keywords> - html keywords
+
+following tags are not yet realised
+it seems that template tag is suffficient if proved otherwise tags below can be implemented
+
+<htmlHead> - дополнительный файл вставляемый в head (директория -, расширение .head.php)
+<headScript> - дополнительный скрипт файл вставляемый в head (директория -, расширение .js.php)
+<header> - header страницы (для вставки после header шаблона, директория -, расширение .header.php)
+<footer> - footer страницы (для вставки перед footer шаблона, директория -, расширение .footer.php)
+<bodyScript> - скрипт страницы (перед закрывающим тегом </body>, директория -, расширение .js.php)
+
+-->
+<sitemap>
+	<menus>
+		<menu id="main_menu">
+
+			<item  id="main" link="home/index">
+				<caption>
+					<ru>главная</ru>
+					<en>home</en>
+				</caption>
+			</item>
+
+			<item  id="about" link="home/about">
+				<caption>
+					<ru>о нас</ru>
+					<en>about us</en>
+				</caption>
+			</item>
+
+			<item id="brand" link="home/brand">
+				<caption>
+					<ru>бренд</ru>
+					<en>brand</en>
+				</caption>
+			</item>
+
+			<item id="contacts" link="home/contacts">
+				<caption>
+					<ru>контакты</ru>
+					<en>contacts</en>
+				</caption>
+			</item>
+
+		</menu>
+	</menus>
+		
+	<pages>
+		<page id="home">
+			<link>home/index</link>
+			<!--title>
+				<ru>Главная страница</ru>
+				<en>Home page</en>
+			</title-->
+			<description>
+				<ru>Описание главной страницы</ru>
+				<en>Home page description</en>
+			</description>
+			<keywords>
+				<ru>Ключевые слова главной страницы</ru>
+				<en>Home page keywords</en>
+			</keywords>
+			<htmlHead></htmlHead>
+			<headScript></headScript>
+			<header></header>
+			<footer></footer>
+			<bodyScript></bodyScript>
+		</page>
+		
+		<page id="about">
+			<link>home/about</link>
+			<template>default</template>
+			<title>
+				<ru>О нас</ru>
+				<en>About us</en>
+			</title>
+			<description>
+				<ru>Описание компании</ru>
+				<en>About us</en>
+			</description>
+			<keywords>
+				<ru>Ключевые слова в описании компании</ru>
+				<en>About us keywords</en>
+			</keywords>
+		</page>
+		
+		<page id="contacts">
+			<link>home/contacts</link>
+			<title>
+				<ru>Контакты</ru>
+				<en>Contacts</en>			
+			</title>
+			<description>
+				<ru>Контакты</ru>
+				<en>Contacts</en>			
+			</description>
+			<keywords>
+				<ru>Контакты</ru>
+				<en>Contacts</en>			
+			</keywords>
+		</page>
+
+		<page id="brand">
+			<link>home/brand</link>
+			<title>
+				<ru>Бренд</ru>
+				<en>Brand</en>			
+			</title>
+			<description>
+				<ru>Бренд</ru>
+				<en>Brand</en>			
+			</description>
+			<keywords>
+				<ru>Бренд</ru>
+				<en>Brand</en>			
+			</keywords>
+		</page>
+
+	</pages>
+</sitemap>

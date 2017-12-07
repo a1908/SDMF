@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<roles>
+	<role id="1">
+		<title>
+			<ru>Администратор сайта</ru>
+			<en>Administrator</en>
+		</title>
+		<descr>
+			<ru>Администратор сайта</ru>
+			<en>Administrator</en>
+		</descr>
+	</role>
+	<role id="2">
+		<title>
+			<ru>Редактор сайта</ru>
+			<en>Site editor</en>
+		</title>
+		<descr>
+			<ru>Редактор сайта</ru>
+			<en>Site editor</en>
+		</descr>
+	</role>
+</roles>

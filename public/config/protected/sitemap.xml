@@ -1,0 +1,156 @@
+<?xml version='1.0'?>
+<!--
+Файл содержит описания меню и страниц зоны сайта
+
+Атрибут acl для меню - выводить или нет пункт меню для конктретной роли
+для страницы право на доступ к странице - значение all - видимо и доступно для всех авторизованных пользователей зоны
+
+структура xml для меню незадокументирована - используется в классе Menu
+   
+<link> - ссылка на страницу (относительно корня сайта + zone + language)
+<template> - шаблон, директория templates
+<title> - html title
+<description> - html description
+<keywords> - html keywords
+
+following tags are not yet realised
+it seems that template tag is suffficient if proved otherwise tags below can be implemented
+
+<htmlHead> - дополнительный файл вставляемый в head (директория -, расширение .head.php)
+<headScript> - дополнительный скрипт файл вставляемый в head (директория -, расширение .js.php)
+<header> - header страницы (для вставки после header шаблона, директория -, расширение .header.php)
+<footer> - footer страницы (для вставки перед footer шаблона, директория -, расширение .footer.php)
+<bodyScript> - скрипт страницы (перед закрывающим тегом </body>, директория -, расширение .js.php)
+
+-->
+<sitemap>
+	<menus>
+		<menu id="main_menu" acl="all">
+
+			<dropdown>
+				<caption>
+					<ru>каталог</ru>
+					<en>catalogue</en>
+				</caption>
+
+				<item link="model/index">
+					<caption>
+						<ru>список</ru>
+						<en>list</en>
+					</caption>
+				</item>
+	
+				<item link="model/add">
+					<caption>
+						<ru>добавить модель</ru>
+						<en>add new model</en>
+					</caption>
+				</item>
+			</dropdown>
+
+			<dropdown>				
+				<caption>
+					<ru>партнеры</ru>
+					<en>partners</en>
+				</caption>
+				
+				<item link="manufacturer/index">
+					<caption>
+						<ru>производители</ru>
+						<en>manufacturers</en>
+					</caption>
+				</item>
+	
+				<item link="designer/index">
+					<caption>
+						<ru>дизайнеры</ru>
+						<en>designers</en>
+					</caption>
+				</item>
+	
+				<item link="carrier/index">
+					<caption>
+						<ru>транспортные компании</ru>
+						<en>delivery service</en>
+					</caption>
+				</item>
+			</dropdown>			
+
+			<dropdown>
+				<caption>
+					<ru>справочники</ru>
+					<en>dictionaries</en>
+				</caption>
+
+				<item link="catalogue/index">
+					<caption>
+						<ru>каталог</ru>
+						<en>catalogue</en>
+					</caption>
+				</item>
+				
+				<item link="style/index">
+					<caption>
+						<ru>стили</ru>
+						<en>styles</en>
+					</caption>
+				</item>
+
+				<item link="award/index">
+					<caption>
+						<ru>премии</ru>
+						<en>awards</en>
+					</caption>
+				</item>
+
+			</dropdown>
+			
+			<dropdown>
+				<caption>
+					<ru>главная</ru>
+					<en>main page</en>
+				</caption>
+
+				<item link="mainpageinfo/index">
+					<caption>
+						<ru>информация для главной страницы</ru>
+						<en>main page info</en>
+					</caption>
+				</item>	
+							
+				<item link="mainpageinfo/models/index">
+					<caption>
+						<ru>товары для показа на главной странице</ru>
+						<en>models to show on main page</en>
+					</caption>
+				</item>				
+			</dropdown>
+
+			<item link="order/index">
+				<caption>
+					<ru>заказы</ru>
+					<en>orders</en>
+				</caption>
+			</item>
+			
+			<item link="home/logout">
+				<caption>
+					<ru>выход</ru>
+					<en>logout</en>
+				</caption>
+			</item>
+
+
+		</menu>
+	</menus>
+		
+	<pages>
+		<page id="model/index">
+			<title>
+				<ru>Список моделей</ru>
+				<en>Models listing</en>
+			</title>
+		</page>
+	</pages>
+
+</sitemap>

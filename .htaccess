@@ -1,0 +1,45 @@
+Options -MultiViews
+Options -Indexes
+
+RewriteEngine On
+
+#root of the site
+RewriteBase "/"
+
+#give access to files and folders in data and www folders only
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(dev[^\/]*|test[^\/]*|public[^\/]*)\/(z-data|www)\/.*$ - [L,QSA]
+
+#add public prefix to anything that is not public.*, test.* or dev.*
+RewriteCond $0 !^(dev[^\/]*|test[^\/]*|public[^\/]*)\/?.*$
+RewriteRule ^(.*)$ public/$1 [L,QSA]
+
+#insert www prefix after root folder unless it is already followed by www or data
+#and if it is an actual folder - don't forget SITE ROOT after %{DOCUMENT_ROOT}
+RewriteCond $0 ^(dev[^\/]*|test[^\/]*|public[^\/]*)\/?.*$
+RewriteCond %{DOCUMENT_ROOT}/%1 -d
+RewriteCond $0 !^(dev[^\/]*|test[^\/]*|public[^\/]*)\/(z-data|www)\/.*$
+RewriteRule ^(dev[^\/]*|test[^\/]*|public[^\/]*)\/?(.*)$ $1/www/$2 [L,QSA]
+
+#whatever passed through - pass it to public/www/
+RewriteRule ^(.*)$ public/www/$1  [L,QSA]
+
+#IMPORTANT! SITE ROOT folder required
+<if "%{REQUEST_URI} !~ m#/(test|dev).*#">
+	php_flag display_startup_errors off
+	php_flag display_errors off
+	php_value error_reporting 0
+	php_flag html_errors off
+		
+</if>
+<else>
+	php_flag display_startup_errors on
+	php_flag display_errors on
+	php_value error_reporting -1
+	php_flag html_errors on		
+</else>
+
+php_value upload_max_filesize 8M
+php_value post_max_size 40M
+

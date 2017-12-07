@@ -1,0 +1,997 @@
+<?xml version='1.0'?>
+<!--
+Файл содержит мета данные для базы данных в соответствии с классами model
+
+! Файл необходим при использовании xml определений в классе model
+! необходимо документирование xml структуры 
+-->
+<data_defs>
+
+	<model id="catalogue">
+		<table>entCatalogue</table>
+		<field id='id'>
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id='title'>
+			<caption>
+				<ru>название</ru>
+				<en>title</en>
+			</caption>
+		</field>
+		<field id='level'>
+			<caption>
+				<ru>уровень</ru>
+				<en>level</en>
+			</caption>
+		</field>
+		<field id='parent_id'>
+			<caption>
+				<ru>родитель</ru>
+				<en>parent</en>
+			</caption>
+		</field>
+		<field id='note'>
+			<caption>
+				<ru>комментарий</ru>
+				<en>note</en>
+			</caption>
+		</field>
+	</model>
+	
+	<model id="style">
+		<table>entStyle</table>
+		<field id='id'>
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id='style'>
+			<caption>
+				<ru>стиль</ru>
+				<en>style</en>
+			</caption>
+		</field>
+		<field id='descr'>
+			<caption>
+				<ru>описание</ru>
+				<en>description</en>
+			</caption>
+		</field>
+	</model>
+	
+	<model id="manufacturer">
+		<table>entManufacturer</table>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id='name' type="text" required="yes">
+			<caption>
+				<ru>название</ru>
+				<en>name</en>
+			</caption>
+		</field>
+
+		<field id='country' type="text" required="yes">
+			<caption>
+				<ru>страна</ru>
+				<en>country</en>
+			</caption>
+		</field>
+
+		<field id='logo' type="image">
+			<caption>
+				<ru>логотип</ru>
+				<en>logo</en>
+			</caption>
+		</field>
+
+		<field id='descr' type="textarea" required="yes">
+			<caption>
+				<ru>описание</ru>
+				<en>description</en>
+			</caption>
+		</field>
+
+		<field id='address' type="text" required="yes">
+			<caption>
+				<ru>адрес</ru>
+				<en>address</en>
+			</caption>
+		</field>
+
+		<field id='website' type="url">
+			<caption>
+				<ru>сайт</ru>
+				<en>site</en>
+			</caption>
+		</field>
+
+		<field id='discount' type="number" step="1" required="yes" validate="yes">
+			<caption>
+				<ru>стандартная скидка (%)</ru>
+				<en>standard discount (%)</en>
+			</caption>
+		</field>
+
+		<field id='leadtime' type="number" step="1" required="yes" validate="yes">
+			<caption>
+				<ru>срок производства (недели)</ru>
+				<en>lead time (weeks)</en>
+			</caption>
+		</field>
+
+		<field id='profit_margin' type="number" step="1" required="yes" validate="yes">
+			<caption>
+				<ru>наценка продавца (%)</ru>
+				<en>profit margin (%)</en>
+			</caption>
+		</field>
+		
+		<field id='default_carrier' type="foreign_key" required="yes">
+			<caption>
+				<ru>перевозчик</ru>
+				<en>carrier</en>
+			</caption>
+			<data_source>carrier</data_source>
+		</field>
+		
+		<field id='contact_name' type="text">
+			<caption>
+				<ru>контакт</ru>
+				<en>contact name</en>
+			</caption>
+		</field>
+		
+		<field id='contact_phone' type="tel" required="yes" validate="yes">
+			<caption>
+				<ru>телефон</ru>
+				<en>contact phone</en>
+			</caption>
+		</field>
+		
+		<field id='contact_email' type="email" validate="yes">
+			<caption>
+				<ru>эл. почта</ru>
+				<en>contact email</en>
+			</caption>
+		</field>
+		
+		<field id='agent_name' type="text">
+			<caption>
+				<ru>агент</ru>
+				<en>agent name</en>
+			</caption>
+		</field>
+		
+		<field id='agent_phone' type="tel" required="yes" validate="yes">
+			<caption>
+				<ru>телефон агента</ru>
+				<en>agent phone</en>
+			</caption>
+		</field>
+		
+		<field id='agent_email' type="email" validate="yes">
+			<caption>
+				<ru>эл. почта агента</ru>
+				<en>contact email</en>
+			</caption>
+		</field>
+		
+		<field id="pricelist_currency" type="foreign_key" required="yes">
+			<caption>
+				<ru>валюта прайс-листа</ru>
+				<en>price list currency</en>
+			</caption>
+			<data_source>pricelist_currency</data_source>
+		</field>
+					
+		<field id="invoice_currency" type="foreign_key" required="yes">
+			<caption>
+				<ru>валюта счета</ru>
+				<en>invoice currency</en>
+			</caption>
+			<data_source>invoice_currency</data_source>
+		</field>
+		
+		<field id="price_conversion" type="number" step="any" default="1">
+			<caption>
+				<ru>коэффициент пересчета цены</ru>
+				<en>price calculation coefficient</en>
+			</caption>
+		</field>
+		
+		<field id="timebound_discount" type="external_link">
+			<caption>
+				<ru>временная скидка</ru>
+				<en>timebound discount</en>
+			</caption>
+			<model>timebound_discount</model>
+			<link>manufacturer_id</link>
+			<fields></fields>
+		</field>
+
+		<field id="advance_payment"  type="number" step="1" default="0">
+			<caption>
+				<ru>предоплата (%)</ru>
+				<en>advance payment(%)</en>
+			</caption>
+		</field>
+
+		<field id='note' type="textarea">
+			<caption>
+				<ru>комментарий</ru>
+				<en>note</en>
+			</caption>
+		</field>
+	</model>
+	
+	<model id="timebound_discount">
+		<table>entTimeboundDiscount</table>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		
+		<field id="manufacturer_id" type="parent_id">
+			<caption>
+				<ru>производитель</ru>
+				<en>manufacturer</en>
+			</caption>
+		</field>
+
+		<field id="discount" type="number" required="yes">
+			<caption>
+				<ru>скидка</ru>
+				<en>discount</en>
+			</caption>
+		</field>		
+
+		<field id="start_date" type="date" required="yes">
+			<caption>
+				<ru>дата начала</ru>
+				<en>start date</en>
+			</caption>
+		</field>
+			
+		<field id="end_date" type="date" required="yes">
+			<caption>
+				<ru>дата окончания</ru>
+				<en>end date</en>
+			</caption>
+		</field>
+			
+	</model>
+	
+	<model id="carrier">
+		<table>entCarrier</table>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id='name' type="text" required="yes">
+			<caption>
+				<ru>название</ru>
+				<en>name</en>
+			</caption>
+		</field>
+		<field id="currency" type="foreign_key" required="yes">
+			<caption>
+				<ru>валюта</ru>
+				<en>currency</en>
+			</caption>
+			<data_source>carrier_currency</data_source>
+		</field>
+					
+		<field id='m3_cost' type="number" step="any" required="yes">
+			<caption>
+				<ru>стоимость за куб.м</ru>
+				<en>qubic meter cost</en>
+			</caption>
+		</field>
+
+		<field id='kg_cost' type="number" step="any" required="yes">
+			<caption>
+				<ru>стоимость за кг</ru>
+				<en>KG cost</en>
+			</caption>
+		</field>
+
+		<field id='contact_name' type="text">
+			<caption>
+				<ru>контакт</ru>
+				<en>contact name</en>
+			</caption>
+		</field>
+		<field id='contact_phone' type="tel" required="yes" validate="yes">
+			<caption>
+				<ru>телефон</ru>
+				<en>contact phone</en>
+			</caption>
+		</field>
+		<field id='contact_email' type="email" validate="yes">
+			<caption>
+				<ru>эл. почта</ru>
+				<en>contact email</en>
+			</caption>
+		</field>
+		<field id='website' type="url">
+			<caption>
+				<ru>сайт</ru>
+				<en>site</en>
+			</caption>
+		</field>
+		<field id='kg_m3_ratio' type="number" required="yes" validate="yes" step="any">
+			<caption>
+				<ru>отношение вес/объем для негабаритов</ru>
+				<en>note</en>
+			</caption>
+		</field>
+		<field id='note' type="textarea">
+			<caption>
+				<ru>комментарий</ru>
+				<en>note</en>
+			</caption>
+		</field>
+	</model>
+	
+	<model id="model">
+		<table>entModel</table>
+		<field id="id" type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id="title" type="text" required="yes">
+			<caption>
+				<ru>наименование</ru>
+				<en>title</en>
+			</caption>
+		</field>
+		<field id="descr" type="textarea" required="yes">
+			<caption>
+				<ru>описание</ru>
+				<en>description</en>
+			</caption>
+		</field>
+		<field id='manufacturer_id' type="foreign_key" required="yes">
+			<caption>
+				<ru>производитель</ru>
+				<en>manufacturer</en>
+			</caption>
+			<data_source>manufacturer</data_source>
+			<link>manufacturer/update/%key%</link>
+		</field>
+		<field id="designer" type="foreign_key">
+			<caption>
+				<ru>дизайнер</ru>
+				<en>designer</en>
+			</caption>
+			<data_source>designer</data_source>
+		</field>
+		<field id="weight" type="number" step="any" validate="yes" default="0">
+			<caption>
+				<ru>вес (кг)</ru>
+				<en>weight (kg)</en>
+			</caption>
+		</field>
+		<field id="cubage" type="number" step="any" validate="yes" default="0">
+			<caption>
+				<ru>объем (куб.м)</ru>
+				<en>cubage (cbm)</en>
+			</caption>
+		</field>
+		<field id="catalogue" type="multiple_foreign_keys">
+			<caption>
+				<ru>каталог</ru>
+				<en>catalogue</en>
+			</caption>
+			<link_table>lnkModelToCatalogue</link_table>
+			<internal_key>model_id</internal_key>
+			<external_key>catalogue_id</external_key>
+			<data_source>catalogue</data_source>
+		</field>
+		<field id="style" type="multiple_foreign_keys">
+			<caption>
+				<ru>стиль</ru>
+				<en>style</en>
+			</caption>
+			<link_table>lnkModelToStyle</link_table>
+			<internal_key>model_id</internal_key>
+			<external_key>style_id</external_key>
+			<data_source>style</data_source>
+		</field>
+		
+		<field id="furniture_type_id" type="foreign_key" required="yes">
+			<caption>
+				<ru>тип мебели</ru>
+				<en>furniture type</en>
+			</caption>
+			<data_source>furniture_type</data_source>
+		</field>
+		
+		<field id="dimensions" type="text">
+			<caption>
+				<ru>размеры</ru>
+				<en>dimensions</en>
+			</caption>
+		</field>
+		<field id="promo_id" type="boolean">
+			<caption>
+				<ru>акция</ru>
+				<en>promo</en>
+			</caption>
+		</field>
+		<field id="file_folder" type="system">
+		</field>
+	</model>
+
+	<model id="designer">
+		<table>entDesigner</table>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		
+		<field id="name" type="text">
+			<caption>
+				<ru>дизайнер</ru>
+				<en>designer</en>
+			</caption>
+		</field>
+
+		<field id="descr" type="textarea">
+			<caption>
+				<ru>описание</ru>
+				<en>description</en>
+			</caption>
+		</field>
+
+		<field id="image" type="image">
+			<caption>
+				<ru>фото</ru>
+				<en>photo</en>
+			</caption>
+		</field>
+	</model>	
+
+	<model id="award">
+		<table>entAward</table>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		
+		<field id="award" type="text">
+			<caption>
+				<ru>премия</ru>
+				<en>wards</en>
+			</caption>
+		</field>
+
+		<field id="descr" type="textarea">
+			<caption>
+				<ru>описание</ru>
+				<en>description</en>
+			</caption>
+		</field>
+
+		<field id="logo" type="image">
+			<caption>
+				<ru>знак</ru>
+				<en>logo</en>
+			</caption>
+		</field>
+	</model>
+		
+
+	<model id="promo">
+		<table>entPromo</table>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		
+		<field id="title" type="text">
+			<caption>
+				<ru>наименование</ru>
+				<en>title</en>
+			</caption>
+		</field>
+
+		<field id="descr" type="textarea">
+			<caption>
+				<ru>описание</ru>
+				<en>description</en>
+			</caption>
+		</field>
+
+		<field id="discount" type="number" step="1" validate="yes" required="yes" default="0">
+			<caption>
+				<ru>скидка(%)</ru>
+				<en>discount(%)</en>
+			</caption>
+		</field>
+		
+		<field id="active" type="boolean">
+			<caption>
+				<ru>активная</ru>
+				<en>active</en>
+			</caption>
+		</field>
+		
+		<field id='start_date' type="date">
+			<caption>
+				<ru>дата начала</ru>
+				<en>start date</en>
+			</caption>
+		</field>
+		
+		<field id='end_date' type="date">
+			<caption>
+				<ru>дата окончания</ru>
+				<en>end date</en>
+			</caption>
+		</field>
+		
+	</model>
+
+	<model id="dimensions">
+		<table>entModelDimensions</table>
+		<display_value>concat(length,' x ', width,' x ',height )</display_value>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		
+		<field id="model_id" type="parent_id">
+			<caption>
+				<ru>модель</ru>
+				<en>model</en>
+			</caption>
+		</field>
+
+		<field id="length" type="number" step="any" required="yes" verify="yes">
+			<caption>
+				<ru>длина</ru>
+				<en>length</en>
+			</caption>
+		</field>		
+
+		<field id="width" type="number" step="any" required="yes" verify="yes">
+			<caption>
+				<ru>ширина</ru>
+				<en>width</en>
+			</caption>
+		</field>
+			
+		<field id="height" type="number" step="any" required="yes" verify="yes">
+			<caption>
+				<ru>высота</ru>
+				<en>height</en>
+			</caption>
+		</field>
+					
+		<field id="depth" type="number" step="any" required="yes" verify="yes">
+			<caption>
+				<ru>глубина</ru>
+				<en>depth</en>
+			</caption>
+		</field>
+		
+		<field id="diameter" type="number" step="any" required="yes" verify="yes">
+			<caption>
+				<ru>диаметр</ru>
+				<en>diameter</en>
+			</caption>
+		</field>
+		
+		<field id="thickness" type="number" step="any" required="yes" verify="yes">
+			<caption>
+				<ru>толщина</ru>
+				<en>thickness</en>
+			</caption>
+		</field>
+		
+		<field id="markup" type="number" step="any" verify="yes">
+			<caption>
+				<ru>доп.стоимость (деньги)</ru>
+				<en>markup</en>
+			</caption>
+		</field>
+	</model>
+	
+	<model id="mainpageInfo">
+		<table>entMainpageInfo</table>
+		<field id='id' type="id">
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id='text1' type="textarea">
+			<caption>
+				<ru>Текст 1</ru>
+				<en>text 1</en>
+			</caption>
+		</field>
+		<field id='text2' type="textarea">
+			<caption>
+				<ru>Текст 2</ru>
+				<en>text 2</en>
+			</caption>
+		</field>
+		<field id='link' type="url" validate="yes">
+			<caption>
+				<ru>Ссылка</ru>
+				<en>link</en>
+			</caption>
+		</field>
+		<field id='image' type="image" required="yes">
+			<caption>
+				<ru>Изображение</ru>
+				<en>image</en>
+			</caption>
+		</field>
+	</model>
+
+	<model id="order">
+		<table>entOrder</table>
+		<field id='id' type='id'>
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id='order_number' type="text">
+			<caption>
+				<ru>номер заказа</ru>
+				<en>order number</en>
+			</caption>
+		</field>
+		<field id='order_date' type="date">
+			<caption>
+				<ru>дата заказа</ru>
+				<en>order date</en>
+			</caption>
+		</field>
+		<field id='order_status' type='dictionary'>
+			<caption>
+				<ru>статус заказа</ru>
+				<en>order status</en>
+			</caption>
+		</field>
+		<field id='shipping_method' type='dictionary'>
+			<caption>
+				<ru>метод доставки</ru>
+				<en>shipping method</en>
+			</caption>
+		</field>
+		<field id='expected_delivery_date' type="date">
+			<caption>
+				<ru>ожидаемая дата доставки</ru>
+				<en>expected delivery date</en>
+			</caption>
+		</field>
+		<field id='note'>
+			<caption>
+				<ru>комментарий</ru>
+				<en>note</en>
+			</caption>
+		</field>
+		<field id="order_amount">
+			<caption>
+				<ru>стоимость заказа</ru>
+				<en>order amount</en>
+			</caption>
+		</field>
+		<field id="order_quantity">
+			<caption>
+				<ru>количество мест</ru>
+				<en>order quantity</en>
+			</caption>
+		</field>
+		<field id="order_weight" type="number" step="any">
+			<caption>
+				<ru>вес (кг)</ru>
+				<en>weight (kg)</en>
+			</caption>
+		</field>
+
+		<field id="order_cubage" type="number" step="any">
+			<caption>
+				<ru>объем (куб.м)</ru>
+				<en>cubage (cbm)</en>
+			</caption>
+		</field>
+
+		<field id='customer' type="text">
+			<caption>
+				<ru>клиент</ru>
+				<en>client</en>
+			</caption>
+			<model>customer</model>
+		</field>
+		
+		
+	</model>
+	
+	<model id="customer">
+		<table>entCustomer</table>
+		<field id='id' type='id'>
+			<caption>
+				<ru>id</ru>
+				<en>id</en>
+			</caption>
+		</field>
+
+		<field id='customer_type' type='dictionary'>
+			<caption>
+				<ru>статус покупателя</ru>
+				<en>customer type</en>
+			</caption>
+		</field>
+		
+		<field id="customer_name" type="text" >
+			<caption>
+				<ru>клиент</ru>
+				<en>customer</en>
+			</caption>
+		</field>
+		
+		<field id='email' type='email'>
+			<caption>
+				<ru>эл. почта</ru>
+				<en>email</en>
+			</caption>
+		</field>
+		
+		<field id='phone' type='tel'>
+			<caption>
+				<ru>телефон</ru>
+				<en>phone</en>
+			</caption>
+		</field>
+		
+		<field id='facebook' type='text'>
+			<caption>
+				<ru>фейсбук</ru>
+				<en>facebook</en>
+			</caption>
+		</field>
+		<field id='skype' type='text'>
+			<caption>
+				<ru>скайп</ru>
+				<en>id</en>
+			</caption>
+		</field>
+		<field id='company_name' type='text'>
+			<caption>
+				<ru>компания</ru>
+				<en>company name</en>
+			</caption>
+		</field>
+		<field id='gender' type='dictionary'>
+			<caption>
+				<ru>пол</ru>
+				<en>gender</en>
+			</caption>
+		</field>
+		<field id='preferable_currency' type='link'>
+			<caption>
+				<ru>предпочитаемая валюта</ru>
+				<en>preferrable currency</en>
+			</caption>
+		</field>
+		<field id='preferable_language' type='dictionary' term='language'>
+			<caption>
+				<ru>предпочитаемый язык</ru>
+				<en>preferrable language</en>
+			</caption>
+		</field>
+		<field id='note' type='text'>
+			<caption>
+				<ru>комментарий</ru>
+				<en>note</en>
+			</caption>
+		</field>
+		<field id='user_agreement_checked' type='boolean'>
+			<caption>
+				<ru>согласие с пользовательским соглашением</ru>
+				<en>user agreement checked</en>
+			</caption>
+		</field>
+	</model>
+
+	<model id="orderItem">
+		<field id="site_code" type="text">
+			<caption>
+				<ru>код товара</ru>
+				<en>site code</en>
+			</caption>
+		</field>
+				
+		<field id="sku" type="text">
+			<caption>
+				<ru>артикул</ru>
+				<en>sku</en>
+			</caption>
+		</field>
+		
+		<field id="sku_ext" type="text">
+			<caption>
+				<ru>доп. артикул</ru>
+				<en>sku extension</en>
+			</caption>
+		</field>
+
+		<field id="title" type="text">
+			<caption>
+				<ru>наименование</ru>
+				<en>model title</en>
+			</caption>
+		</field>
+		
+		<field id="options" type="text">
+			<caption>
+				<ru>варианты отделки</ru>
+				<en>options</en>
+			</caption>
+		</field>
+		
+		<field id="price" type="number" step="any">
+			<caption>
+				<ru>цена</ru>
+				<en>price</en>
+			</caption>
+		</field>
+
+		<field id="quantity" type="number" step="1">
+			<caption>
+				<ru>количество</ru>
+				<en>quantity</en>
+			</caption>
+		</field>
+
+		<field id="weight" type="number" step="any">
+			<caption>
+				<ru>вес (кг)</ru>
+				<en>weight (kg)</en>
+			</caption>
+		</field>
+
+		<field id="cubage" type="number" step="any">
+			<caption>
+				<ru>объем (куб.м)</ru>
+				<en>cubage (cbm)</en>
+			</caption>
+		</field>
+
+		<field id="amount" type="number">
+			<caption>
+				<ru>стоимость</ru>
+				<en>фьщгте</en>
+			</caption>
+		</field>
+
+	</model>
+	
+	<data_source id="catalogue">
+		<default>
+			<ru>Раздел каталога...</ru>
+			<en>Select catalogue section</en>
+		</default>
+		<key name="id">id</key>
+		<value name="title">title</value>
+		<table_ref>listCatalogue</table_ref>
+		<specs>order by title</specs>
+	</data_source>
+
+	<data_source id="manufacturer">
+		<default>
+			<ru>Производитель...</ru>
+			<en>Manufacturer</en>
+		</default>
+		<key name="id">id</key>
+		<value name="name">name</value>
+		<table_ref>entManufacturer</table_ref>
+		<specs>order by name</specs>
+	</data_source>
+	
+	<data_source id="designer">
+		<default>
+			<ru>Дизайнер...</ru>
+			<en>Designer</en>
+		</default>
+		<key name="id">id</key>
+		<value name="name">name</value>
+		<table_ref>entDesigner</table_ref>
+		<specs>order by name</specs>
+	</data_source>
+	
+	<data_source id="carrier">
+		<default>
+			<ru>Перевозчик...</ru>
+			<en>Select carrier</en>
+		</default>
+		<key name="id">id</key>
+		<value name="name">name</value>
+		<table_ref>entCarrier</table_ref>
+		<specs>order by name</specs>
+	</data_source>
+	
+	<data_source id="furniture_type">
+		<default>
+			<ru>Тип мебели...</ru>
+			<en>Select furniture type</en>
+		</default>
+		<key name="id">id</key>
+		<value name="furniture_type">furniture_type</value>
+		<table_ref>entFurnitureType</table_ref>
+		<specs>order by furniture_type</specs>
+	</data_source>
+	
+	<data_source id="style">
+		<default>
+			<ru>Стиль...</ru>
+			<en>Select style</en>
+		</default>
+		<key name="id">id</key>
+		<value name="style">style</value>
+		<table_ref>entStyle</table_ref>
+		<specs>order by style</specs>
+	</data_source>
+
+	<data_source id="pricelist_currency">
+		<default>
+			<ru>Валюта прайс-листа...</ru>
+			<en>Price list currency...</en>
+		</default>
+		<key name="id">id</key>
+		<value name="name">name</value>
+		<table_ref>listPricelistCurrencies</table_ref>
+		<specs>order by name</specs>
+	</data_source>
+
+	<data_source id="invoice_currency">
+		<default>
+			<ru>Валюта счета...</ru>
+			<en>Invoice currency...</en>
+		</default>
+		<key name="id">id</key>
+		<value name="name">name</value>
+		<table_ref>listInvoiceCurrencies</table_ref>
+		<specs>order by name</specs>
+	</data_source>
+
+	<data_source id="carrier_currency">
+		<default>
+			<ru>Валюта...</ru>
+			<en>Сurrency...</en>
+		</default>
+		<key name="id">id</key>
+		<value name="name">name</value>
+		<table_ref>listCarrierCurrencies</table_ref>
+		<specs>order by name</specs>
+	</data_source>
+
+</data_defs>

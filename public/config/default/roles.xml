@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<roles>
+	<role id="1">
+		<title>
+			<ru>Пользователь</ru>
+			<en>User</en>
+		</title>
+		<descr>
+			<ru>Пользователь</ru>
+			<en>User</en>
+		</descr>
+	</role>
+</roles>

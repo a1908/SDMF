@@ -1,0 +1,1 @@
+<input type="<?=$type?>" name="<?=$name?>"<?=isset($class)?" class='$class'":""?><?=isset($value)?" value='".htmlspecialchars($value)."'":""?><?=isset($step)?" step='$step'":""?><?=isset($required)?" required":""?><?=isset($validate)?" validate":""?>>
